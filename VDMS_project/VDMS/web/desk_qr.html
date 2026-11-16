@@ -1,0 +1,36 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>VDMS - Desk QR Codes</title>
+<style>
+  body{font-family:Segoe UI,Arial,sans-serif;margin:20px}
+  .controls input{width:420px;padding:6px;margin:4px 0 10px}
+  .hint{color:#666;font-size:13px;max-width:640px}
+  .card{display:inline-block;border:2px solid #1f4e79;border-radius:10px;padding:18px;margin:12px;text-align:center;width:300px;vertical-align:top}
+  .card h2{margin:0 0 12px;font-size:18px;color:#1f4e79} .card .qr{display:flex;justify-content:center}
+  .card .desk{font-size:26px;font-weight:700;margin-top:10px} .card small{display:block;color:#777;margin-top:6px;word-break:break-all;font-size:10px}
+  @media print{.controls{display:none}}
+</style></head><body>
+<div class="controls">
+  <h1>Desk QR codes</h1>
+  <label>Form address (what a visitor's phone can open)</label><br><input id="base">
+  <br><label>Desks (comma separated)</label><br><input id="desks" value="Desk-01, Desk-02, Desk-03, Desk-04">
+  <br><button onclick="build()">Generate</button> <button onclick="window.print()">Print</button>
+  <p class="hint">Use this computer's network address (for example http://192.168.1.20/vdms/form.php), <b>not</b> localhost: a phone cannot open "localhost". Find the address with <code>ipconfig</code> (IPv4 Address). This page needs internet once to load the QR library.</p>
+</div>
+<div id="out"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+document.getElementById('base').value = location.href.replace(/desk_qr\.html.*$/, 'form.php');
+function build(){
+  var out=document.getElementById('out'); out.innerHTML='';
+  var base=document.getElementById('base').value.trim();
+  document.getElementById('desks').value.split(',').forEach(function(d){
+    d=d.trim(); if(!d) return;
+    var url=base+'?desk='+encodeURIComponent(d);
+    var card=document.createElement('div'); card.className='card';
+    card.innerHTML='<h2>Scan to submit your document</h2><div class="qr"></div><div class="desk">'+d+'</div><small>'+url+'</small>';
+    out.appendChild(card);
+    new QRCode(card.querySelector('.qr'),{text:url,width:240,height:240});
+  });
+}
+build();
+</script></body></html>

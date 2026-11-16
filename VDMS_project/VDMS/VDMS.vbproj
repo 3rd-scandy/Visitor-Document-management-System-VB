@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>VDMS</RootNamespace>
+    <AssemblyName>VDMS</AssemblyName>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <StartupObject>Sub Main</StartupObject>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.4.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Forms\frmLogin.vb"><SubType>Form</SubType></Compile>
+    <Compile Update="Forms\frmLogin.Designer.vb"><DependentUpon>frmLogin.vb</DependentUpon></Compile>
+    <Compile Update="Forms\frmDeskDashboard.vb"><SubType>Form</SubType></Compile>
+    <Compile Update="Forms\frmDeskDashboard.Designer.vb"><DependentUpon>frmDeskDashboard.vb</DependentUpon></Compile>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copy to App.config (git-ignored) and fill in real values. NEVER commit real secrets. -->
+<configuration>
+  <connectionStrings>
+    <add name="VDMS" connectionString="Server=localhost;Database=vdms_db;Uid=root;Pwd=;" />
+  </connectionStrings>
+  <appSettings>
+    <add key="TwilioAccountSid" value="YOUR_SID" />
+    <add key="TwilioAuthToken"  value="YOUR_TOKEN" />
+    <add key="TwilioFromNumber" value="+1XXXXXXXXXX" />
+    <add key="SmtpHost"         value="smtp.office365.com" />
+    <add key="SmtpPort"         value="587" />
+    <add key="SmtpSender"       value="noreply-registrar@university.edu" />
+    <add key="SmtpPassword"     value="YOUR_PASSWORD" />
+  </appSettings>
+</configuration>
